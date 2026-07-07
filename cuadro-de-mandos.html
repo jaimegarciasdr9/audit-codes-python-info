@@ -1,0 +1,367 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<title>Cuadro de Mando Auditoría Interna 2025–2026</title>
+<style>
+:root {
+  --red:#C0392B; --navy:#1B2A3B;
+  --surface:#FFFFFF; --bg:#F2F4F8; --border:#DDE2EC;
+  --text:#0F1623; --muted:#64748B;
+  --ok:#166534; --ok-bg:#DCFCE7;
+  --warn:#854D0E; --warn-bg:#FEF9C3;
+  --risk:#9A3412; --risk-bg:#FFEDD5;
+  --crit:#991B1B; --crit-bg:#FEE2E2;
+  --info:#1E40AF; --info-bg:#DBEAFE;
+  --none:#475569; --none-bg:#F1F5F9;
+  --bde:#6B21A8; --bde-bg:#F3E8FF;
+}
+@media(prefers-color-scheme:dark){:root{
+  --surface:#1C2333;--bg:#141C28;--border:#263044;--text:#E4EAF4;--muted:#8899B4;
+  --ok-bg:#052E16;--warn-bg:#422006;--risk-bg:#431407;--crit-bg:#450A0A;--info-bg:#1E3A5F;--none-bg:#1E293B;--bde-bg:#2E1065;
+}}
+:root[data-theme=dark]{--surface:#1C2333;--bg:#141C28;--border:#263044;--text:#E4EAF4;--muted:#8899B4;--ok-bg:#052E16;--warn-bg:#422006;--risk-bg:#431407;--crit-bg:#450A0A;--info-bg:#1E3A5F;--none-bg:#1E293B;--bde-bg:#2E1065;}
+:root[data-theme=light]{--surface:#FFFFFF;--bg:#F2F4F8;--border:#DDE2EC;--text:#0F1623;--muted:#64748B;--ok-bg:#DCFCE7;--warn-bg:#FEF9C3;--risk-bg:#FFEDD5;--crit-bg:#FEE2E2;--info-bg:#DBEAFE;--none-bg:#F1F5F9;--bde-bg:#F3E8FF;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);font-size:13px;line-height:1.5;min-height:100vh;}
+
+/* HEADER */
+.app-header{background:var(--navy);color:#fff;padding:14px 28px;display:flex;align-items:center;gap:16px;}
+.h-logo{font-size:20px;font-weight:800;color:var(--red);letter-spacing:-1px;line-height:1;}
+.h-div{width:1px;height:26px;background:rgba(255,255,255,0.15);}
+.h-title{font-size:14px;font-weight:600;}
+.h-sub{font-size:10px;color:rgba(255,255,255,0.45);margin-top:1px;}
+.h-period{margin-left:auto;text-align:right;font-size:10px;color:rgba(255,255,255,0.45);font-variant-numeric:tabular-nums;line-height:1.7;}
+
+/* TABS */
+.tabs-nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 28px;display:flex;overflow-x:auto;scrollbar-width:none;}
+.tabs-nav::-webkit-scrollbar{display:none;}
+.tab-btn{background:none;border:none;padding:12px 16px;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap;letter-spacing:0.2px;font-family:inherit;transition:color .12s;}
+.tab-btn:hover{color:var(--text);}
+.tab-btn.active{color:var(--red);border-bottom-color:var(--red);font-weight:600;}
+
+/* CONTENT */
+.tab-content{display:none;padding:22px 28px;}
+.tab-content.active{display:block;}
+.sec-heading{font-size:14px;font-weight:700;letter-spacing:-.2px;margin-bottom:14px;}
+.mt-20{margin-top:20px;}
+
+/* KPI ROW */
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:22px;}
+.kpi{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:16px 18px;border-top:3px solid var(--border);}
+.kpi.k-red{border-top-color:var(--red);} .kpi.k-ok{border-top-color:var(--ok);} .kpi.k-info{border-top-color:var(--info);} .kpi.k-warn{border-top-color:var(--warn);} .kpi.k-none{border-top-color:var(--none);}
+.kpi-label{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.9px;color:var(--muted);margin-bottom:6px;}
+.kpi-val{font-size:28px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-1.5px;line-height:1;}
+.kpi-sub{font-size:10px;color:var(--muted);margin-top:4px;}
+
+/* BADGE */
+.badge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:100px;font-size:10px;font-weight:600;letter-spacing:.2px;white-space:nowrap;}
+.badge::before{content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0;}
+.b-ok{color:var(--ok);background:var(--ok-bg);} .b-ok::before{background:var(--ok);}
+.b-warn{color:var(--warn);background:var(--warn-bg);} .b-warn::before{background:var(--warn);}
+.b-risk{color:var(--risk);background:var(--risk-bg);} .b-risk::before{background:var(--risk);}
+.b-crit{color:var(--crit);background:var(--crit-bg);} .b-crit::before{background:var(--crit);}
+.b-info{color:var(--info);background:var(--info-bg);} .b-info::before{background:var(--info);}
+.b-none{color:var(--none);background:var(--none-bg);} .b-none::before{background:var(--none);}
+.b-bde{color:var(--bde);background:var(--bde-bg);} .b-bde::before{background:var(--bde);}
+
+/* TABLE */
+.tw{overflow-x:auto;background:var(--surface);border:1px solid var(--border);border-radius:6px;}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;min-width:680px;}
+th{text-align:left;padding:9px 13px;font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.9px;color:var(--muted);background:var(--bg);border-bottom:1px solid var(--border);white-space:nowrap;}
+td{padding:10px 13px;border-bottom:1px solid var(--border);vertical-align:middle;}
+tr:last-child td{border-bottom:none;}
+tbody tr:hover td{background:var(--bg);}
+.td-m{color:var(--muted);font-size:12px;}
+.td-n{font-variant-numeric:tabular-nums;}
+
+/* PROGRESS */
+.pg-w{width:72px;height:5px;background:var(--border);border-radius:3px;overflow:hidden;display:inline-block;vertical-align:middle;}
+.pg-f{height:100%;border-radius:3px;}
+
+/* GANTT */
+.gantt-wrap{background:var(--surface);border:1px solid var(--border);border-radius:6px;overflow:hidden;}
+.gantt-scroll{overflow-x:auto;}
+.gantt{min-width:860px;}
+.g-head-row,.g-body-row{display:grid;grid-template-columns:260px 1fr;border-bottom:1px solid var(--border);}
+.g-body-row:last-child{border-bottom:none;}
+.g-head-label{padding:9px 14px;font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.9px;color:var(--muted);background:var(--bg);border-right:1px solid var(--border);}
+.g-head-months{display:grid;grid-template-columns:repeat(12,1fr);background:var(--bg);}
+.g-month{padding:9px 4px;text-align:center;font-size:9.5px;font-weight:700;letter-spacing:.5px;color:var(--muted);text-transform:uppercase;border-right:1px solid var(--border);}
+.g-month:last-child{border-right:none;}
+.g-row-label{padding:0 14px;display:flex;flex-direction:column;justify-content:center;gap:2px;border-right:1px solid var(--border);min-height:50px;}
+.g-row-name{font-size:12px;font-weight:500;}
+.g-row-meta{font-size:10.5px;color:var(--muted);}
+.g-timeline{position:relative;min-height:50px;background-image:repeating-linear-gradient(90deg,transparent 0,transparent calc(8.333% - 1px),var(--border) calc(8.333% - 1px),var(--border) 8.333%);}
+.g-bar{position:absolute;top:50%;transform:translateY(-50%);height:24px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:9.5px;font-weight:700;letter-spacing:.4px;color:#fff;padding:0 6px;overflow:hidden;white-space:nowrap;}
+.g-bar.dashed{border:2px dashed #64748B;color:#64748B;background:transparent;}
+.gantt-legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:14px;padding:14px 16px;background:var(--surface);border:1px solid var(--border);border-radius:6px;}
+.leg-item{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted);}
+.leg-box{width:12px;height:8px;border-radius:2px;flex-shrink:0;}
+.leg-box.ld{border:2px dashed #64748B;}
+
+/* CONTROLS */
+.cg{background:var(--surface);border:1px solid var(--border);border-radius:6px;margin-bottom:14px;overflow:hidden;}
+.cg-head{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;padding:11px 15px;background:var(--bg);border-bottom:1px solid var(--border);}
+.cg-title{font-size:13px;font-weight:600;}
+.c-row{display:grid;grid-template-columns:26px 1fr 95px 130px 115px 90px;gap:10px;align-items:center;padding:9px 15px;border-bottom:1px solid var(--border);font-size:12px;}
+.c-row:last-child{border-bottom:none;}
+.c-row:hover{background:var(--bg);}
+.c-row.c-head{background:var(--bg);font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);}
+.c-num{font-size:9.5px;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums;}
+.c-name{font-weight:500;}
+.c-sub{font-size:10px;color:var(--muted);margin-top:1px;}
+
+/* AREAS */
+.ag{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;}
+.ac{background:var(--surface);border:1px solid var(--border);border-radius:6px;overflow:hidden;}
+.ac-top{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:10px;}
+.ac-name{font-size:13px;font-weight:600;}
+.ac-cnt{font-size:9.5px;font-weight:700;color:var(--muted);background:var(--bg);border:1px solid var(--border);border-radius:100px;padding:2px 8px;white-space:nowrap;flex-shrink:0;}
+.ac-resp{padding:12px 18px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border);}
+.av{width:32px;height:32px;border-radius:50%;font-size:11px;font-weight:700;color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.r-name{font-size:12px;font-weight:600;}
+.r-role{font-size:10px;color:var(--muted);}
+.ac-list{padding:10px 18px 14px;}
+.ac-item{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:5px 0;font-size:11px;border-bottom:1px solid var(--border);}
+.ac-item:last-child{border-bottom:none;}
+.ac-item-name{color:var(--muted);}
+
+/* MEETINGS */
+.ml{display:flex;flex-direction:column;gap:9px;}
+.mi{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:12px 16px;display:grid;grid-template-columns:64px 1fr auto;gap:14px;align-items:center;}
+.mi.past{opacity:.6;}
+.mi-date{background:var(--bg);border:1px solid var(--border);border-radius:5px;padding:7px 5px;text-align:center;}
+.mi-day{font-size:20px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums;}
+.mi-month{font-size:8.5px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-top:1px;}
+.mi-title{font-size:12px;font-weight:600;margin-bottom:3px;}
+.mi-meta{display:flex;gap:10px;font-size:10px;color:var(--muted);flex-wrap:wrap;}
+</style>
+
+<div class="app">
+
+<header class="app-header">
+  <div class="h-logo">gt</div>
+  <div class="h-div"></div>
+  <div>
+    <div class="h-title">Cuadro de Mando — Auditoría Interna</div>
+    <div class="h-sub">Gestora de Activos ABC · Ejercicio 2025–2026</div>
+  </div>
+  <div class="h-period">Período: May 2025 – Abr 2026<br>Actualizado: Jul 2026</div>
+</header>
+
+<nav class="tabs-nav">
+  <button class="tab-btn active" data-tab="roadmap">Roadmap</button>
+  <button class="tab-btn" data-tab="dashboard">Cuadro de Mando</button>
+  <button class="tab-btn" data-tab="controles">Controles</button>
+  <button class="tab-btn" data-tab="areas">Áreas y Responsables</button>
+  <button class="tab-btn" data-tab="reuniones">Reuniones</button>
+</nav>
+
+<!-- ═══ ROADMAP ═══ -->
+<section id="tab-roadmap" class="tab-content active">
+  <div class="sec-heading">Roadmap de Auditoría 2025–2026</div>
+  <div class="gantt-wrap">
+    <div class="gantt-scroll"><div class="gantt">
+      <div class="g-head-row">
+        <div class="g-head-label">Trabajo de auditoría</div>
+        <div class="g-head-months">
+          <div class="g-month">May</div><div class="g-month">Jun</div><div class="g-month">Jul</div>
+          <div class="g-month">Ago</div><div class="g-month">Sep</div><div class="g-month">Oct</div>
+          <div class="g-month">Nov</div><div class="g-month">Dic</div><div class="g-month">Ene</div>
+          <div class="g-month">Feb</div><div class="g-month">Mar</div><div class="g-month">Abr</div>
+        </div>
+      </div>
+      <!-- May=0, Jun=1/12, Jul=2/12, Ago=3/12, Sep=4/12, Oct=5/12, Nov=6/12, Dic=7/12, Ene=8/12, Feb=9/12, Mar=10/12, Abr=11/12 -->
+      <div class="g-body-row">
+        <div class="g-row-label"><span class="g-row-name">Gestora AM — 1er Semestre</span><span class="g-row-meta">Gestión de Activos · Carmen López</span></div>
+        <div class="g-timeline"><div class="g-bar" style="left:0.5%;width:49.5%;background:#1E40AF">1S 2025</div></div>
+      </div>
+      <div class="g-body-row">
+        <div class="g-row-label"><span class="g-row-name">Gestora AM — 2º Semestre</span><span class="g-row-meta">Gestión de Activos · Pablo Sanz Moreno</span></div>
+        <div class="g-timeline"><div class="g-bar dashed" style="left:41.7%;width:57.9%">2S 2025</div></div>
+      </div>
+      <div class="g-body-row">
+        <div class="g-row-label"><span class="g-row-name">Seguimiento Planes de Acción</span><span class="g-row-meta">Cumplimiento · Carmen López</span></div>
+        <div class="g-timeline"><div class="g-bar" style="left:0.5%;width:99%;background:#0F766E"></div></div>
+      </div>
+      <div class="g-body-row">
+        <div class="g-row-label"><span class="g-row-name">Control Interno — Riesgos</span><span class="g-row-meta">Riesgos · Pablo Sanz Moreno</span></div>
+        <div class="g-timeline"><div class="g-bar" style="left:8.4%;width:33.2%;background:#166534">Completada</div></div>
+      </div>
+      <div class="g-body-row">
+        <div class="g-row-label"><span class="g-row-name">Auditoría Tecnología (TI)</span><span class="g-row-meta">Tecnología · Pablo Sanz Moreno</span></div>
+        <div class="g-timeline"><div class="g-bar" style="left:16.7%;width:41.5%;background:#1E40AF">En curso</div></div>
+      </div>
+      <div class="g-body-row">
+        <div class="g-row-label"><span class="g-row-name">Revisión AML / AMLD</span><span class="g-row-meta">Cumplimiento · Pablo Sanz Moreno</span></div>
+        <div class="g-timeline"><div class="g-bar dashed" style="left:25%;width:41.5%">No iniciada</div></div>
+      </div>
+    </div></div>
+  </div>
+  <div class="gantt-legend">
+    <div class="leg-item"><div class="leg-box" style="background:#166534"></div>Satisfactorio</div>
+    <div class="leg-item"><div class="leg-box" style="background:#854D0E"></div>Adecuado</div>
+    <div class="leg-item"><div class="leg-box" style="background:#9A3412"></div>Necesidad de mejora</div>
+    <div class="leg-item"><div class="leg-box" style="background:#991B1B"></div>Insatisfactorio</div>
+    <div class="leg-item"><div class="leg-box" style="background:#1E40AF"></div>Auditoría en curso</div>
+    <div class="leg-item"><div class="leg-box ld"></div>Auditoría no iniciada</div>
+    <div class="leg-item"><div class="leg-box" style="background:#6B21A8"></div>Requerimiento BdE</div>
+  </div>
+</section>
+
+<!-- ═══ CUADRO DE MANDO ═══ -->
+<section id="tab-dashboard" class="tab-content">
+  <div class="kpi-row">
+    <div class="kpi k-red"><div class="kpi-label">Trabajos planificados</div><div class="kpi-val">6</div><div class="kpi-sub">Ejercicio 2025–2026</div></div>
+    <div class="kpi k-ok"><div class="kpi-label">Completados</div><div class="kpi-val">1</div><div class="kpi-sub">17% del plan</div></div>
+    <div class="kpi k-info"><div class="kpi-label">En curso</div><div class="kpi-val">3</div><div class="kpi-sub">50% del plan</div></div>
+    <div class="kpi k-none"><div class="kpi-label">No iniciados</div><div class="kpi-val">2</div><div class="kpi-sub">33% del plan</div></div>
+    <div class="kpi k-warn"><div class="kpi-label">Controles con hallazgo</div><div class="kpi-val">4</div><div class="kpi-sub">De 19 ejecutados</div></div>
+  </div>
+  <div class="sec-heading">Estado de los trabajos</div>
+  <div class="tw"><table>
+    <thead><tr><th>#</th><th>Auditoría</th><th>Área</th><th>Responsable</th><th>Período</th><th>Estado</th><th>Resultado</th><th>Avance</th></tr></thead>
+    <tbody>
+      <tr><td class="td-m td-n">01</td><td><strong>Gestora AM 1er Semestre</strong></td><td class="td-m">Gestión de Activos</td><td>Carmen López</td><td class="td-m td-n">May–Oct 25</td><td><span class="badge b-info">En curso</span></td><td class="td-m">—</td><td><div style="display:flex;align-items:center;gap:6px"><div class="pg-w"><div class="pg-f" style="width:70%;background:#1E40AF"></div></div><span class="td-m td-n">70%</span></div></td></tr>
+      <tr><td class="td-m td-n">02</td><td><strong>Gestora AM 2º Semestre</strong></td><td class="td-m">Gestión de Activos</td><td>Pablo Sanz Moreno</td><td class="td-m td-n">Oct 25–Abr 26</td><td><span class="badge b-none">No iniciada</span></td><td class="td-m">—</td><td><div style="display:flex;align-items:center;gap:6px"><div class="pg-w"><div class="pg-f" style="width:0%;background:#475569"></div></div><span class="td-m td-n">0%</span></div></td></tr>
+      <tr><td class="td-m td-n">03</td><td><strong>Seguimiento Planes de Acción</strong></td><td class="td-m">Cumplimiento</td><td>Carmen López</td><td class="td-m td-n">May 25–Abr 26</td><td><span class="badge b-info">En curso</span></td><td class="td-m">—</td><td><div style="display:flex;align-items:center;gap:6px"><div class="pg-w"><div class="pg-f" style="width:45%;background:#1E40AF"></div></div><span class="td-m td-n">45%</span></div></td></tr>
+      <tr><td class="td-m td-n">04</td><td><strong>Control Interno — Riesgos</strong></td><td class="td-m">Riesgos</td><td>Pablo Sanz Moreno</td><td class="td-m td-n">Jun–Sep 25</td><td><span class="badge b-ok">Completada</span></td><td><span class="badge b-warn">Adecuado</span></td><td><div style="display:flex;align-items:center;gap:6px"><div class="pg-w"><div class="pg-f" style="width:100%;background:#166534"></div></div><span class="td-m td-n">100%</span></div></td></tr>
+      <tr><td class="td-m td-n">05</td><td><strong>Auditoría Tecnología (TI)</strong></td><td class="td-m">Tecnología</td><td>Pablo Sanz Moreno</td><td class="td-m td-n">Jul–Nov 25</td><td><span class="badge b-info">En curso</span></td><td class="td-m">—</td><td><div style="display:flex;align-items:center;gap:6px"><div class="pg-w"><div class="pg-f" style="width:40%;background:#1E40AF"></div></div><span class="td-m td-n">40%</span></div></td></tr>
+      <tr><td class="td-m td-n">06</td><td><strong>Revisión AML / AMLD</strong></td><td class="td-m">Cumplimiento</td><td>Pablo Sanz Moreno</td><td class="td-m td-n">Ago–Dic 25</td><td><span class="badge b-none">No iniciada</span></td><td class="td-m">—</td><td><div style="display:flex;align-items:center;gap:6px"><div class="pg-w"><div class="pg-f" style="width:0%;background:#475569"></div></div><span class="td-m td-n">0%</span></div></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- ═══ CONTROLES ═══ -->
+<section id="tab-controles" class="tab-content">
+  <div class="sec-heading">Controles de Auditoría</div>
+
+  <div class="cg">
+    <div class="cg-head"><span class="cg-title">Gestora AM — 1er Semestre</span><span class="badge b-info">En curso</span><span class="td-m">5 controles</span></div>
+    <div class="c-row c-head"><span>#</span><span>Control</span><span>Tipo</span><span>Estado</span><span>Resultado</span><span>Responsable</span></div>
+    <div class="c-row"><span class="c-num">C01</span><div><div class="c-name">Revisión de carteras de inversión</div><div class="c-sub">Sustantivo · Detalle</div></div><span class="td-m">Sustantivo</span><span><span class="badge b-ok">Completado</span></span><span><span class="badge b-warn">Adecuado</span></span><span class="td-m">C. López</span></div>
+    <div class="c-row"><span class="c-num">C02</span><div><div class="c-name">Verificación cálculo NAV diario</div><div class="c-sub">Sustantivo · Analítico</div></div><span class="td-m">Sustantivo</span><span><span class="badge b-ok">Completado</span></span><span><span class="badge b-ok">Satisfactorio</span></span><span class="td-m">C. López</span></div>
+    <div class="c-row"><span class="c-num">C03</span><div><div class="c-name">Límites de inversión y concentración</div><div class="c-sub">Cumplimiento · Normativa</div></div><span class="td-m">Cumplimiento</span><span><span class="badge b-info">En curso</span></span><span class="td-m">—</span><span class="td-m">C. López</span></div>
+    <div class="c-row"><span class="c-num">C04</span><div><div class="c-name">Contratos de gestión delegada</div><div class="c-sub">Cumplimiento · Contractual</div></div><span class="td-m">Cumplimiento</span><span><span class="badge b-ok">Completado</span></span><span><span class="badge b-risk">Nec. mejora</span></span><span class="td-m">C. López</span></div>
+    <div class="c-row"><span class="c-num">C05</span><div><div class="c-name">Valoración de activos ilíquidos</div><div class="c-sub">Sustantivo · Detalle</div></div><span class="td-m">Sustantivo</span><span><span class="badge b-ok">Completado</span></span><span><span class="badge b-warn">Adecuado</span></span><span class="td-m">C. López</span></div>
+  </div>
+
+  <div class="cg">
+    <div class="cg-head"><span class="cg-title">Control Interno — Riesgos</span><span class="badge b-ok">Completada</span><span class="td-m">4 controles</span></div>
+    <div class="c-row c-head"><span>#</span><span>Control</span><span>Tipo</span><span>Estado</span><span>Resultado</span><span>Responsable</span></div>
+    <div class="c-row"><span class="c-num">C01</span><div><div class="c-name">Marco de apetito al riesgo</div><div class="c-sub">Cumplimiento · Normativa</div></div><span class="td-m">Cumplimiento</span><span><span class="badge b-ok">Completado</span></span><span><span class="badge b-ok">Satisfactorio</span></span><span class="td-m">P. Sanz</span></div>
+    <div class="c-row"><span class="c-num">C02</span><div><div class="c-name">Métricas de riesgo de mercado</div><div class="c-sub">Sustantivo · Analítico</div></div><span class="td-m">Sustantivo</span><span><span class="badge b-ok">Completado</span></span><span><span class="badge b-warn">Adecuado</span></span><span class="td-m">P. Sanz</span></div>
+    <div class="c-row"><span class="c-num">C03</span><div><div class="c-name">Proceso de stress testing</div><div class="c-sub">Sustantivo · Detalle</div></div><span class="td-m">Sustantivo</span><span><span class="badge b-ok">Completado</span></span><span><span class="badge b-warn">Adecuado</span></span><span class="td-m">P. Sanz</span></div>
+    <div class="c-row"><span class="c-num">C04</span><div><div class="c-name">Modelos de riesgo de crédito (IFRS9)</div><div class="c-sub">Sustantivo · Detalle</div></div><span class="td-m">Sustantivo</span><span><span class="badge b-ok">Completado</span></span><span><span class="badge b-crit">Insatisfactorio</span></span><span class="td-m">P. Sanz</span></div>
+  </div>
+
+  <div class="cg">
+    <div class="cg-head"><span class="cg-title">Auditoría Tecnología (TI)</span><span class="badge b-info">En curso</span><span class="td-m">5 controles</span></div>
+    <div class="c-row c-head"><span>#</span><span>Control</span><span>Tipo</span><span>Estado</span><span>Resultado</span><span>Responsable</span></div>
+    <div class="c-row"><span class="c-num">C01</span><div><div class="c-name">Control de accesos lógicos</div><div class="c-sub">TI · Seguridad</div></div><span class="td-m">TI</span><span><span class="badge b-info">En curso</span></span><span class="td-m">—</span><span class="td-m">P. Sanz</span></div>
+    <div class="c-row"><span class="c-num">C02</span><div><div class="c-name">Gestión de cambios en sistemas</div><div class="c-sub">TI · Operaciones</div></div><span class="td-m">TI</span><span><span class="badge b-info">En curso</span></span><span class="td-m">—</span><span class="td-m">P. Sanz</span></div>
+    <div class="c-row"><span class="c-num">C03</span><div><div class="c-name">Plan de continuidad de negocio</div><div class="c-sub">TI · Continuidad</div></div><span class="td-m">TI</span><span><span class="badge b-none">Pendiente</span></span><span class="td-m">—</span><span class="td-m">P. Sanz</span></div>
+    <div class="c-row"><span class="c-num">C04</span><div><div class="c-name">Seguridad de la información (SIEM)</div><div class="c-sub">TI · Seguridad</div></div><span class="td-m">TI</span><span><span class="badge b-none">Pendiente</span></span><span class="td-m">—</span><span class="td-m">P. Sanz</span></div>
+    <div class="c-row"><span class="c-num">C05</span><div><div class="c-name">Revisión ciberseguridad y phishing</div><div class="c-sub">TI · Ciberseguridad</div></div><span class="td-m">TI</span><span><span class="badge b-none">Pendiente</span></span><span class="td-m">—</span><span class="td-m">P. Sanz</span></div>
+  </div>
+
+  <div class="cg">
+    <div class="cg-head"><span class="cg-title">Seguimiento Planes de Acción</span><span class="badge b-info">En curso</span><span class="td-m">3 controles</span></div>
+    <div class="c-row c-head"><span>#</span><span>Control</span><span>Tipo</span><span>Estado</span><span>Resultado</span><span>Responsable</span></div>
+    <div class="c-row"><span class="c-num">C01</span><div><div class="c-name">Verificación plan de acción 2024</div><div class="c-sub">Seguimiento · Cierre</div></div><span class="td-m">Seguimiento</span><span><span class="badge b-ok">Completado</span></span><span><span class="badge b-warn">Adecuado</span></span><span class="td-m">C. López</span></div>
+    <div class="c-row"><span class="c-num">C02</span><div><div class="c-name">Recomendaciones Banco de España</div><div class="c-sub">Seguimiento · BdE</div></div><span class="td-m">Seguimiento</span><span><span class="badge b-info">En curso</span></span><span class="td-m">—</span><span class="td-m">C. López</span></div>
+    <div class="c-row"><span class="c-num">C03</span><div><div class="c-name">Implementación mejoras control interno</div><div class="c-sub">Seguimiento · Mejora</div></div><span class="td-m">Seguimiento</span><span><span class="badge b-info">En curso</span></span><span class="td-m">—</span><span class="td-m">C. López</span></div>
+  </div>
+</section>
+
+<!-- ═══ ÁREAS Y RESPONSABLES ═══ -->
+<section id="tab-areas" class="tab-content">
+  <div class="sec-heading">Áreas y Equipos</div>
+  <div class="ag">
+    <div class="ac">
+      <div class="ac-top"><div class="ac-name">Gestión de Activos</div><div class="ac-cnt">2 trabajos</div></div>
+      <div class="ac-resp"><div class="av" style="background:#1E40AF">CL</div><div><div class="r-name">Carmen López Herrero</div><div class="r-role">Director · Firma Auditora</div></div></div>
+      <div class="ac-list">
+        <div class="ac-item"><span class="ac-item-name">Gestora AM 1er Semestre</span><span class="badge b-info">En curso</span></div>
+        <div class="ac-item"><span class="ac-item-name">Gestora AM 2º Semestre</span><span class="badge b-none">No iniciada</span></div>
+      </div>
+    </div>
+    <div class="ac">
+      <div class="ac-top"><div class="ac-name">Cumplimiento</div><div class="ac-cnt">2 trabajos</div></div>
+      <div class="ac-resp"><div class="av" style="background:#1E40AF">CL</div><div><div class="r-name">Carmen López Herrero</div><div class="r-role">Director · Firma Auditora</div></div></div>
+      <div class="ac-list">
+        <div class="ac-item"><span class="ac-item-name">Seguimiento Planes de Acción</span><span class="badge b-info">En curso</span></div>
+        <div class="ac-item"><span class="ac-item-name">Revisión AML / AMLD</span><span class="badge b-none">No iniciada</span></div>
+      </div>
+    </div>
+    <div class="ac">
+      <div class="ac-top"><div class="ac-name">Riesgos</div><div class="ac-cnt">1 trabajo</div></div>
+      <div class="ac-resp"><div class="av" style="background:#C0392B">PS</div><div><div class="r-name">Pablo Sanz Moreno</div><div class="r-role">Auditor · Firma Auditora</div></div></div>
+      <div class="ac-list">
+        <div class="ac-item"><span class="ac-item-name">Control Interno — Riesgos</span><span class="badge b-ok">Completada</span></div>
+      </div>
+    </div>
+    <div class="ac">
+      <div class="ac-top"><div class="ac-name">Tecnología</div><div class="ac-cnt">1 trabajo</div></div>
+      <div class="ac-resp"><div class="av" style="background:#C0392B">PS</div><div><div class="r-name">Pablo Sanz Moreno</div><div class="r-role">Auditor · Firma Auditora</div></div></div>
+      <div class="ac-list">
+        <div class="ac-item"><span class="ac-item-name">Auditoría Tecnología (TI)</span><span class="badge b-info">En curso</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-heading mt-20">Equipo Auditor</div>
+  <div class="tw"><table>
+    <thead><tr><th>Nombre</th><th>Rol</th><th>Organización</th><th>Trabajos</th><th>Controles ej.</th><th>Estado</th></tr></thead>
+    <tbody>
+      <tr><td><div style="display:flex;align-items:center;gap:9px"><div class="av" style="width:28px;height:28px;font-size:10px;background:#1B2A3B">RM</div><strong>Ricardo Martínez Blanco</strong></div></td><td class="td-m">Socio</td><td class="td-m">Firma Auditora</td><td class="td-n">6</td><td class="td-n">— / —</td><td><span class="badge b-info">En curso</span></td></tr>
+      <tr><td><div style="display:flex;align-items:center;gap:9px"><div class="av" style="width:28px;height:28px;font-size:10px;background:#1E40AF">CL</div><strong>Carmen López Herrero</strong></div></td><td class="td-m">Director</td><td class="td-m">Firma Auditora</td><td class="td-n">4</td><td class="td-n">6 / 11</td><td><span class="badge b-info">En curso</span></td></tr>
+      <tr><td><div style="display:flex;align-items:center;gap:9px"><div class="av" style="width:28px;height:28px;font-size:10px;background:#C0392B">PS</div><strong>Pablo Sanz Moreno</strong></div></td><td class="td-m">Auditor</td><td class="td-m">Firma Auditora</td><td class="td-n">4</td><td class="td-n">6 / 12</td><td><span class="badge b-info">En curso</span></td></tr>
+      <tr><td><div style="display:flex;align-items:center;gap:9px"><div class="av" style="width:28px;height:28px;font-size:10px;background:#0F766E">ER</div><strong>Elena Ruiz Domínguez</strong></div></td><td class="td-m">Dir. Auditoría Interna</td><td class="td-m">Entidad Financiera XYZ</td><td class="td-n">6</td><td class="td-n">— / —</td><td><span class="badge b-info">Supervisión</span></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- ═══ REUNIONES ═══ -->
+<section id="tab-reuniones" class="tab-content">
+  <div class="sec-heading">Calendario de Reuniones</div>
+  <div style="display:flex;gap:14px;margin-bottom:14px;font-size:10.5px;color:var(--muted)">
+    <span style="display:flex;align-items:center;gap:5px"><span style="width:7px;height:7px;border-radius:50%;background:var(--ok);display:inline-block"></span>Celebrada</span>
+    <span style="display:flex;align-items:center;gap:5px"><span style="width:7px;height:7px;border-radius:50%;background:var(--info);display:inline-block"></span>Próxima</span>
+    <span style="display:flex;align-items:center;gap:5px"><span style="width:7px;height:7px;border-radius:50%;background:var(--none);display:inline-block"></span>Pendiente</span>
+  </div>
+  <div class="ml">
+    <div class="mi past"><div class="mi-date"><div class="mi-day">15</div><div class="mi-month">May 25</div></div><div><div class="mi-title">Kick-off — Gestora AM 1er Semestre</div><div class="mi-meta"><span>Gestión de Activos</span><span>· C. López · P. Sanz · E. Ruiz</span><span>· Apertura de auditoría</span></div></div><span class="badge b-ok">Celebrada</span></div>
+    <div class="mi past"><div class="mi-date"><div class="mi-day">10</div><div class="mi-month">Jun 25</div></div><div><div class="mi-title">Kick-off — Control Interno Riesgos</div><div class="mi-meta"><span>Riesgos</span><span>· P. Sanz · E. Ruiz</span><span>· Apertura de auditoría</span></div></div><span class="badge b-ok">Celebrada</span></div>
+    <div class="mi past"><div class="mi-date"><div class="mi-day">18</div><div class="mi-month">Jul 25</div></div><div><div class="mi-title">Avance — Gestora AM 1S (Control NAV)</div><div class="mi-meta"><span>Gestión de Activos</span><span>· C. López · P. Sanz · Dpto. Inversiones</span><span>· Seguimiento trabajo de campo</span></div></div><span class="badge b-ok">Celebrada</span></div>
+    <div class="mi past"><div class="mi-date"><div class="mi-day">22</div><div class="mi-month">Jul 25</div></div><div><div class="mi-title">Kick-off — Auditoría Tecnología (TI)</div><div class="mi-meta"><span>Tecnología</span><span>· P. Sanz · E. Ruiz · CTO Entidad Financiera XYZ</span><span>· Apertura de auditoría</span></div></div><span class="badge b-ok">Celebrada</span></div>
+    <div class="mi past"><div class="mi-date"><div class="mi-day">15</div><div class="mi-month">Sep 25</div></div><div><div class="mi-title">Cierre — Control Interno Riesgos</div><div class="mi-meta"><span>Riesgos</span><span>· R. Martínez · C. López · P. Sanz · E. Ruiz</span><span>· Presentación de hallazgos</span></div></div><span class="badge b-ok">Celebrada</span></div>
+    <div class="mi"><div class="mi-date" style="border-color:var(--info);background:var(--info-bg)"><div class="mi-day" style="color:var(--info)">08</div><div class="mi-month">Oct 25</div></div><div><div class="mi-title">Kick-off — Gestora AM 2º Semestre</div><div class="mi-meta"><span>Gestión de Activos</span><span>· C. López · P. Sanz · E. Ruiz</span><span>· Apertura de auditoría</span></div></div><span class="badge b-info">Próxima</span></div>
+    <div class="mi"><div class="mi-date"><div class="mi-day">20</div><div class="mi-month">Oct 25</div></div><div><div class="mi-title">Avance — Auditoría TI (Accesos y SIEM)</div><div class="mi-meta"><span>Tecnología</span><span>· P. Sanz · E. Ruiz · Dpto. Sistemas</span><span>· Seguimiento trabajo de campo</span></div></div><span class="badge b-none">Pendiente</span></div>
+    <div class="mi"><div class="mi-date"><div class="mi-day">05</div><div class="mi-month">Nov 25</div></div><div><div class="mi-title">Kick-off — Revisión AML / AMLD</div><div class="mi-meta"><span>Cumplimiento</span><span>· C. López · P. Sanz · E. Ruiz · Compliance</span><span>· Apertura de auditoría</span></div></div><span class="badge b-none">Pendiente</span></div>
+    <div class="mi"><div class="mi-date"><div class="mi-day">30</div><div class="mi-month">Nov 25</div></div><div><div class="mi-title">Cierre — Auditoría Tecnología (TI)</div><div class="mi-meta"><span>Tecnología</span><span>· R. Martínez · C. López · P. Sanz · E. Ruiz</span><span>· Presentación de hallazgos</span></div></div><span class="badge b-none">Pendiente</span></div>
+    <div class="mi"><div class="mi-date"><div class="mi-day">20</div><div class="mi-month">Dic 25</div></div><div><div class="mi-title">Cierre — Revisión AML / AMLD</div><div class="mi-meta"><span>Cumplimiento</span><span>· R. Martínez · C. López · P. Sanz · E. Ruiz</span><span>· Presentación de hallazgos</span></div></div><span class="badge b-none">Pendiente</span></div>
+    <div class="mi"><div class="mi-date"><div class="mi-day">28</div><div class="mi-month">Feb 26</div></div><div><div class="mi-title">Avance — Gestora AM 2º Semestre</div><div class="mi-meta"><span>Gestión de Activos</span><span>· C. López · P. Sanz · E. Ruiz</span><span>· Seguimiento trabajo de campo</span></div></div><span class="badge b-none">Pendiente</span></div>
+    <div class="mi"><div class="mi-date"><div class="mi-day">15</div><div class="mi-month">Abr 26</div></div><div><div class="mi-title">Cierre Anual — Presentación Comité de Auditoría</div><div class="mi-meta"><span>Todas las áreas</span><span>· R. Martínez · C. López · P. Sanz · E. Ruiz · Comité AI</span><span>· Resumen ejecutivo 2025–2026</span></div></div><span class="badge b-none">Pendiente</span></div>
+  </div>
+</section>
+
+</div>
+
+<script>
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  });
+});
+</script>
+
+</body>
+</html>

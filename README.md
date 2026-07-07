@@ -1,58 +1,45 @@
-# Audit Codes Python
+# Cuadro de Mando — Auditoría Interna
 
-Repositorio de scripts Python de uso profesional en auditoría y análisis financiero.
+Este repositorio contiene una **plantilla de cuadro de mando interactivo** utilizado como formato de presentación ante el Comité de Auditoría para la revisión y seguimiento de la auditoría continua.
 
-> El código fuente es privado. Para solicitar acceso, abre un Issue usando el botón de abajo.
-
-**[➜ Solicitar acceso al código](https://github.com/jaimegarciasdr9/audit-codes-python-info/issues/new?title=Solicitud+de+acceso&body=Hola%2C+me+gustar%C3%ADa+acceder+al+c%C3%B3digo+del+repositorio.%0A%0ANombre%3A+%0AMotivo%3A+)**
+> **[➜ Ver Cuadro de Mando](cuadro-de-mandos.html)**
 
 ---
 
-## Proyectos disponibles
+## Descripción
 
-### IFRS9 — Riesgo de Crédito
+El cuadro de mando adjunto (`cuadro-de-mandos.html`) representa el **formato estándar de reporte** que se presenta al Comité de Auditorías en el contexto de la auditoría continua. Su objetivo es proporcionar una visión completa, estructurada y actualizada del estado de los trabajos de auditoría en curso y planificados.
 
-Réplica de modelos de riesgo de crédito para auditoría IFRS9 (LEVAs).
+Esta es una **plantilla de referencia** con datos anonimizados, diseñada para ser adaptada a cada encargo concreto.
 
-| Módulo | Descripción |
+---
+
+## Contenido del cuadro de mando
+
+El documento interactivo incluye las siguientes secciones:
+
+| Pestaña | Descripción |
 |---|---|
-| `01_replica_PD_GT` | Réplica del modelo de Probabilidad de Default (PD) mediante regresión logística |
-| `02_replica_LGD_GT` | Réplica del modelo de Severidad / Loss Given Default (LGD) |
-| `03_calculo_reservas` | Cálculo de reservas IFRS9 a partir de los modelos PD y LGD |
-
-**Stack:** Python · pandas · numpy · statsmodels
-
----
-
-### NAV — Valores Liquidativos
-
-Obtención automatizada de valores liquidativos (NAV) de fondos de inversión desde múltiples fuentes.
-
-| Módulo | Descripción |
-|---|---|
-| `get_nav_cnmv` | Descarga de NAV desde el registro oficial de la CNMV |
-| `nav_todos` | Agregación de NAV de todos los fondos (Yahoo Finance + CNMV) |
-| `nav_yahoo` | Consulta de NAV por ISIN desde Yahoo Finance |
-| `yahoo_finance` | Capa de conexión y utilidades con la API de Yahoo Finance |
-| `valor_liquidativo` | Cálculo del valor liquidativo neto |
-
-**Stack:** Python · yfinance · requests · pandas
+| **Roadmap** | Diagrama de Gantt con la planificación temporal de todos los trabajos de auditoría |
+| **Cuadro de Mando** | KPIs globales y tabla de estado de cada auditoría (avance, resultado, responsable) |
+| **Controles** | Detalle de todos los controles ejecutados por auditoría, con tipo, estado y resultado |
+| **Áreas y Responsables** | Organización del equipo auditor por área y tabla de asignaciones |
+| **Reuniones** | Calendario de reuniones de auditoría (kick-offs, avances y cierres) |
 
 ---
 
-### Utils — Utilidades
+## Uso
 
-| Módulo | Descripción |
-|---|---|
-| `extraer_dnis` | Extrae y cuenta DNIs/NIEs de documentos PDF con texto seleccionable |
-
-**Stack:** Python · pdfplumber · re
+Para adaptar esta plantilla a un encargo real:
+1. Descarga el fichero `cuadro-de-mandos.html`
+2. Edita los datos directamente en el HTML (auditorías, controles, fechas, responsables)
+3. Abre el fichero en cualquier navegador — no requiere servidor ni dependencias externas
 
 ---
 
-## Solicitar acceso
+## Solicitar acceso al código fuente
 
-El repositorio con el código fuente es privado.  
-Para solicitar acceso, abre un Issue y lo gestiono en menos de 24h.
+El repositorio con los scripts Python de análisis es privado.
+Para solicitar acceso, abre un Issue usando el botón de abajo.
 
-**[➜ Abrir solicitud de acceso](https://github.com/jaimegarciasdr9/audit-codes-python-info/issues/new?title=Solicitud+de+acceso&body=Hola%2C+me+gustar%C3%ADa+acceder+al+c%C3%B3digo+del+repositorio.%0A%0ANombre%3A+%0AMotivo%3A+)**
+**[➜ Solicitar acceso](https://github.com/jaimegarciasdr9/audit-codes-python-info/issues/new?title=Solicitud+de+acceso&body=Nombre%3A+%0AMotivo%3A+)**
